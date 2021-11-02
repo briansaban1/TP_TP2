@@ -18,7 +18,7 @@ constructor(){
 }
 async enviar_mail(email, nombre, apellido){
     const mail_options = {
-        from: 'orty.service@gmail.com',
+        from: MAILUSER,
         to: email,
         subject: 'Bienvenido a ORTY-Service',
         html: `

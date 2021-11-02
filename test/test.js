@@ -21,7 +21,7 @@ try {
     //USUARIO
 
     //se crea un usuario
-    const persona1 = await crearUsuario(daoUsuarios, "brian111", "saban", "briansaban", "pass1234", "test@test.com", 1)
+    const persona1 = await crearUsuario(daoUsuarios, "brian111", "saban", "briansaban", "pass1234", "orty.service@gmail.com", 1)
     const persona2 = await crearUsuario(daoUsuarios, "brian222", "saban", "briansaban", "pass1234", "test@test.com", 1)
     const persona3 = await crearUsuario(daoUsuarios, "brian333", "saban", "briansaban", "pass1234", "test@test.com", 1)
     console.log(persona1, persona2, persona3)
