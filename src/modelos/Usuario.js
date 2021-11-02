@@ -1,3 +1,5 @@
+import bcrypt from "bcryptjs";
+
 class Usuario {
     constructor(id, nombre, apellido, usuario, password, email, tipo) {
         this.id = id
@@ -55,6 +57,26 @@ class Usuario {
 
     static nextId() {
         return ++Usuario.ultimoId
+    }
+
+    /**
+     * Encriptar password
+     * @param {String} password 
+     * @returns 
+     */
+    static encryptPassword = async (password) => {
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
+    }
+
+    /**
+     * Compara la contraseña que ingresada por el usuario si es correcta con el encriptado
+     * @param {String} password 
+     * @param {String} receivedPassword 
+     * @returns 
+     */
+    static comparePassword = async (password, receivedPassword) => {
+    return await bcrypt.compare(password, receivedPassword);
     }
 }
 

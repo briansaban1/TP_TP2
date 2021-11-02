@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { crearPersona } from '../casosDeUso/altaDePersona.js'
 import { modificarPersona } from '../casosDeUso/modificarPersona.js'
 import { getDao } from '../daos/DaoFactory.js'
+import {authJwt} from "../middleware";
 
 const daoPersonas = getDao()
 
@@ -12,14 +13,26 @@ routerPersonas.post('/', async (req, res) => {
     try {
         const { nombre, edad } = req.body
         const persona = await crearPersona(daoPersonas, nombre, edad)
-        res.json(persona)
+
+        const token  = jwt.sign({ id: persona.id }, process.env.SECRET, {
+            expiresIn: 86400 // 24 hours
+        })
+
+        const resp = 
+        { 
+            persona: persona,
+            token: token
+        }
+
+        res.json(resp)
     } catch (error) {
         res.json({ error: "no se pudo crear: " + error.message })
     }
 })
 
+
 //se actualiza
-routerPersonas.put('/:idPersona', async (req, res) => {
+routerPersonas.put('/:idPersona', [authJwt.verifyToken], async (req, res) => {
     const [ [ campo, valor ] ] = Object.entries(req.body)
 
     const { idPersona } = req.params
