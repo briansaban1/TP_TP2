@@ -5,7 +5,7 @@ const records = [
     {nombre: 'Lo de Martin', ubicacion: 'Tincho 1010', calificacion: '3'},
     {nombre: 'Lo de Mariano', ubicacion: 'Profe 2021', calificacion: '10'}
 ]
-const escritor = new CsvWriter('pito.csv')
+const escritor = new CsvWriter('prueba.csv')
 try{
     await escritor.create(records)
     console.log('done')
