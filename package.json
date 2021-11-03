@@ -6,7 +6,9 @@
   "main": "src/main.js",
   "scripts": {
     "start": "node .",
-    "test": "node test/testCsv.js"
+    "test": "node test/test.js",
+    "testCsv": "node test/testCsv.js",
+    "testUsr" : "node src/InformadorUsuarios/testInformadorDeUsuarios.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "csv-writer": "^1.6.0",
+    "axios": "^0.24.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.1.3",
