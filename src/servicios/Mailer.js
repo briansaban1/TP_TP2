@@ -3,17 +3,22 @@ import nodemailer from 'nodemailer'
 const MAILUSER = "orty.service@gmail.com"
 const MAILPSSWD = "orty-service-pass"
 
-async function enviar_mail (email, nombre, apellido) {
-    let transporter = nodemailer.createTransport({
-        service: 'gmail',
-        
-        auth: {
-            user: MAILUSER,
-            pass: MAILPSSWD
-        }
-    });
-    let mail_options = {
-        from: 'orty.service@gmail.com',
+
+export default class EnviarMails{
+constructor(){
+    
+        this.transporter = nodemailer.createTransport({
+            service: 'gmail',
+            host: 'smtp.gmail.com',
+            auth: {
+                user: MAILUSER,
+                pass: MAILPSSWD
+            }
+        })
+}
+async enviar_mail(email, nombre, apellido){
+    const mail_options = {
+        from: MAILUSER,
         to: email,
         subject: 'Bienvenido a ORTY-Service',
         html: `
@@ -22,7 +27,7 @@ async function enviar_mail (email, nombre, apellido) {
                     <td bgcolor="" width="600px">
                         <h1 style="color: #fff; text-align:center">Bienvenido</h1>
                         <p  style="color: #fff; text-align:center">
-                            <span style="color: #e84393">${nombre, apellido}</span> 
+                            <span style="color: #e84393">${nombre} ${apellido}</span> 
                             a la aplicación
                         </p>
                     </td>
@@ -35,13 +40,13 @@ async function enviar_mail (email, nombre, apellido) {
             </table>
         `
     };
-   await transporter.sendMail(mail_options, (error, info) => {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('El correo se envío correctamente ' + info.response);
-        }
-    });
-};
+    try{
+        await this.transporter.sendMail(mail_options)
+        //console.log('El correo se envío correctamente');
 
-export default enviar_mail
+    }catch(error){
+        throw new Error(`EMAIL_ERROR: ${error}`)
+        
+    }
+}
+}
