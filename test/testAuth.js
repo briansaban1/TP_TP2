@@ -1,4 +1,3 @@
-import { request } from 'express';
 import { generarToken } from '../src/servicios/Auth.js'
 
 
