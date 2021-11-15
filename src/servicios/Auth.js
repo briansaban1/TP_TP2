@@ -25,6 +25,7 @@ export function autenticar(req,res,next) {
 }
 
 export function generarToken(usuario){
-    const token = jwt.sign(usuario, clave);
+    console.log(usuario);
+    const token = jwt.sign(usuario.nombre, clave);
     return token;
 }
