@@ -1,16 +1,17 @@
-
+import { request } from 'express';
 import { generarToken } from '../src/servicios/Auth.js'
 
-const daoUsuarios = getDaoUsr()
-const daoServicios = getDaoSer()
 
 try {
 
+    const usuario = {
+        nombre: "alexis",
+        edad: 20
+    }
+
     //se genera token
-    const token = await generarToken("alexis","TP2G6");
+    const token = await generarToken(usuario,"TP2G6");
     console.log(token);
-
-
 
 } catch (error) {
     console.log(error)
