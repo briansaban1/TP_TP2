@@ -1,4 +1,3 @@
-// import { modificarEdad } from '../src/casosDeUso/modificarEdad.js'
 import { modificarUsuario } from '../src/casosDeUso/modificarUsuario.js'
 import { crearUsuario } from '../src/casosDeUso/crearUsuario.js'
 import {obtenerUsuario} from '../src/casosDeUso/obtenerUsuario.js'
