@@ -1,7 +1,7 @@
 import express from 'express'
 import { routerPersonas } from './rutas/routerPersonas.js'
 
-function crearServidor() {
+export function crearServidor() {
 
     const app = express()
 
@@ -31,4 +31,4 @@ function crearServidor() {
     }
 }
 
-export { crearServidor }
+export default ( crearServidor);

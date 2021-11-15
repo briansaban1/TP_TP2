@@ -1,4 +1,4 @@
-import { crearServidor } from './server.js'
+import { crearServidor} from './server.js';
 
 const servidor = crearServidor()
 

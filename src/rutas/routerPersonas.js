@@ -1,18 +1,19 @@
 import { Router } from 'express'
-import { crearPersona } from '../casosDeUso/altaDePersona.js'
-import { modificarPersona } from '../casosDeUso/modificarPersona.js'
-import { getDao } from '../daos/DaoFactory.js'
+import { crearUsuario } from '../casosDeUso/crearUsuario.js'
+import { modificarUsuario } from '../casosDeUso/modificarUsuario.js'
+import { getDaoUsr } from '../daos/DaoFactory.js'
 import { generarToken, autenticar } from '../servicios/Auth.js'
 
-const daoPersonas = getDao()
+const daoUsuarios = getDaoUsr()
 
 const routerPersonas = Router()
 
 //se crea
 routerPersonas.post('/', async (req, res) => {
     try {
-        const { nombre, edad } = req.body
-        const persona = await crearPersona(daoPersonas, nombre, edad)
+        const { nombre, apellido, usuario, password, email, tipo } = req.body
+
+        const persona = await crearUsuario(daoUsuarios, nombre, apellido, usuario, password, email, tipo);
         const token = generarToken(persona);
 
         const resp = 
@@ -34,7 +35,7 @@ routerPersonas.put('/:idPersona', autenticar, async (req, res) => {
     const { idPersona } = req.params
 
     try {
-        const modificada = await modificarPersona(daoPersonas, idPersona, campo, valor)
+        const modificada = await modificarUsuario(daoUsuarios, idPersona, campo, valor)
         res.json(modificada)
     } catch (error) {
         res.json({ error: 'no se pudo modificar' })
