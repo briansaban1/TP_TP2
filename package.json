@@ -8,7 +8,7 @@
     "start": "node .",
     "test": "node test/test.js",
     "testCsv": "node test/testCsv.js",
-    "testUsr" : "node test/testCU_obtenerInfoUsuarios.js"
+    "testUsr": "node test/testCU_obtenerInfoUsuarios.js"
   },
   "keywords": [],
   "author": "",

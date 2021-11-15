@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { crearPersona } from '../casosDeUso/altaDePersona.js'
 import { modificarPersona } from '../casosDeUso/modificarPersona.js'
 import { getDao } from '../daos/DaoFactory.js'
-import {authJwt} from "../middleware";
+import { generarToken, autenticar } from '../servicios/Auth.js'
 
 const daoPersonas = getDao()
 
@@ -13,10 +13,7 @@ routerPersonas.post('/', async (req, res) => {
     try {
         const { nombre, edad } = req.body
         const persona = await crearPersona(daoPersonas, nombre, edad)
-
-        const token  = jwt.sign({ id: persona.id }, process.env.SECRET, {
-            expiresIn: 86400 // 24 hours
-        })
+        const token = generarToken(persona);
 
         const resp = 
         { 
@@ -32,10 +29,10 @@ routerPersonas.post('/', async (req, res) => {
 
 
 //se actualiza
-routerPersonas.put('/:idPersona', [authJwt.verifyToken], async (req, res) => {
+routerPersonas.put('/:idPersona', autenticar, async (req, res) => {
     const [ [ campo, valor ] ] = Object.entries(req.body)
-
     const { idPersona } = req.params
+
     try {
         const modificada = await modificarPersona(daoPersonas, idPersona, campo, valor)
         res.json(modificada)
