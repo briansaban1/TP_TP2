@@ -1,11 +1,13 @@
-import CsvWriter from '../src/servicios/GenerarCsv.js'
+import { obtenerCsvServicio } from './src/casoDeUso/obtenerCsvServicio.js'
+import { getDaoSer } from '../src/dos/DaoFactory.js'
+import { obtenerServicio } from '../src/casosDeUso/obtenerServicio.js'
 
-const records = [
-    {nombre: 'Lo de Jorge', ubicacion: 'Calle falsa 123', calificacion: '9'},
-    {nombre: 'Lo de Martin', ubicacion: 'Tincho 1010', calificacion: '3'},
-    {nombre: 'Lo de Mariano', ubicacion: 'Profe 2021', calificacion: '10'}
-]
-const escritor = new CsvWriter('prueba.csv')
+const daoServicios = getDaoUsr()
+const servicio = await obtenerServicio(daoServicios, persona1.id)
+const datos = {
+    nombre: servicio.nombre,
+    ubicacion: servicio.ubicacion
+}
 try{
     await escritor.create(records)
     console.log('done')
