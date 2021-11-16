@@ -1,10 +1,11 @@
 import { obtenerInfoUsuarios } from "../src/casosDeUso/obtenerInfoUsuarios.js";
 import { crearUsuario } from '../src/casosDeUso/crearUsuario.js'
+
 import { getDaoUsr } from '../src/daos/DaoFactory.js'
 
 
 const daoUsuarios = getDaoUsr()
-// Importo el caso de uso y utilizo la función ahí creada
+
 let result = await obtenerInfoUsuarios()
 console.log("------ TRAIGO INFO DE UNA API -------")
 console.log("result", result);
