@@ -1,7 +1,9 @@
-import Escritor from 'csvWriter.js'
+import Escritor from '../escritorCSV/csvWriter.js'
 
 const e = new Escritor('./uploads')
 
-export default function getEscritor(){
+export function getEscritor(){
     return e
 }
+
+export default {getEscritor};
