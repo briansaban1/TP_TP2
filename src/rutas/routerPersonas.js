@@ -1,6 +1,8 @@
 import { Router } from 'express'
 import { crearUsuario } from '../casosDeUso/crearUsuario.js'
+import { eliminarUsuario } from '../casosDeUso/eliminarUsuario.js'
 import { modificarUsuario } from '../casosDeUso/modificarUsuario.js'
+import { obtenerUsuario } from '../casosDeUso/obtenerUsuario.js'
 import { getDaoUsr } from '../daos/DaoFactory.js'
 import { generarToken, autenticar } from '../servicios/Auth.js'
 
@@ -41,5 +43,31 @@ routerPersonas.put('/:idPersona', autenticar, async (req, res) => {
         res.json({ error: 'no se pudo modificar' })
     }
 })
+
+//se elimina
+routerPersonas.delete('/:idPersona', autenticar, async (req, res) => {
+    const { idPersona } = req.params
+
+    try {
+        const eliminado = await eliminarUsuario(daoUsuarios, idPersona)
+        res.json(eliminado)
+    } catch (error) {
+        res.json({ error: 'no se pudo modificar' })
+    }
+})
+
+//se obtiene
+routerPersonas.get('/:idPersona', autenticar, async (req, res) => {
+    const { idPersona } = req.params
+
+    try {
+        const eliminado = await obtenerUsuario(daoUsuarios, idPersona)
+        res.json(eliminado)
+    } catch (error) {
+        res.json({ error: 'no se pudo modificar' })
+    }
+})
+
+
 
 export { routerPersonas }

@@ -1,6 +1,6 @@
 import { fromDTO, toDTO } from '../modelos/Servicios.js'
 
-async function obtenerServicio(daoServicios, id) {
+export async function obtenerServicio(daoServicios, id) {
     const servicio = fromDTO(await daoServicios.buscar(Number(id)))
 
     
@@ -9,4 +9,4 @@ async function obtenerServicio(daoServicios, id) {
     return servicio
 }
 
-export { obtenerServicio }
+export default { obtenerServicio }
