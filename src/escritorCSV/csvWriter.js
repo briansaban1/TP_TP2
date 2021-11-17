@@ -1,9 +1,9 @@
 import createCsvWriter from 'csv-writer'
 
 export default class Escritor{
-    constructor(chosenPath){
+    constructor(){
         this.createCsv = createCsvWriter.createObjectCsvWriter({
-            path: chosenPath,
+            path: "archivo.csv",
             header: [
                 {id: 'nombre', title: 'Nombre'},
                 {id: 'ubicacion', title: 'Ubicacion'}

@@ -9,10 +9,10 @@ const servicio = await crearServicio(daoServicios, "titulo22", "descrpt2222", 22
 if(!servicio){
     console.log('servicio no encontrado')
 }else{
-    const datos = {
+    const datos = [{
         nombre: servicio.titulo,
         ubicacion: servicio.barrio
-    }
+    }]
     try{
         await obtenerCsvServicio(datos)
         console.log('done')
