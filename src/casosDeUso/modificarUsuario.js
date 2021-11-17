@@ -23,7 +23,7 @@ async function modificarUsuario(daoPersonas, id, campo, nuevoValor) {
             usuario.setTipo(nuevoValor)
             break
         default:
-            throw new Error(`no existe el campo ${campo} en persona`)
+            throw new Error(`no existe el campo ${campo} en usuario`)
     }
 
     await daoPersonas.guardar(toDTO(usuario))

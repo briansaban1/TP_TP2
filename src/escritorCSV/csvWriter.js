@@ -5,8 +5,9 @@ export default class Escritor{
         this.createCsv = createCsvWriter.createObjectCsvWriter({
             path: "archivo.csv",
             header: [
-                {id: 'nombre', title: 'Nombre'},
-                {id: 'ubicacion', title: 'Ubicacion'}
+                {id: 'titulo', title: 'Titulo'},
+                {id: 'ubicacion', title: 'Ubicacion'},
+                {id: 'rubro', title: 'Rubro'}
             ]
         })
     }

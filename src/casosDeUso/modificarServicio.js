@@ -21,7 +21,7 @@ async function modificarServicio(daoServicios, id, campo, nuevoValor) {
             break
         
         default:
-            throw new Error(`no existe el campo ${campo} en persona`)
+            throw new Error(`no existe el campo ${campo} en servicio`)
     }
 
     await daoServicios.guardar(toDTO(servicio))
