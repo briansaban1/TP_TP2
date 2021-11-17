@@ -7,6 +7,7 @@ import { crearServicio } from '../src/casosDeUso/crearServicio.js'
 import { eliminarServicio } from '../src/casosDeUso/eliminarServicio.js'
 import { modificarServicio } from '../src/casosDeUso/modificarServicio.js'
 import { obtenerServicio } from '../src/casosDeUso/obtenerServicio.js'
+import { obtenerInfoUsuarios } from "../src/casosDeUso/obtenerInfoUsuarios.js";
 
 
 
@@ -38,7 +39,19 @@ try {
     console.log(eliminar)
 
 
-    //SERVICIO
+    //USUARIO POR API
+
+    let result = await obtenerInfoUsuarios()
+    console.log("------ TRAIGO INFO DE UNA API -------")
+    console.log("result", result);
+    const personaApi = await crearUsuario(daoUsuarios, result.name.first, result.name.last, result.login.username, result.login.password, result.email, 1)
+    console.log("------ CREO PERSONA CON LA INFO OBTENIDA -------")
+    console.log("Persona", personaApi);
+
+    //
+
+
+    //SERVICIOS
 
     //se crea un servicio
     const servicio1 = await crearServicio(daoServicios, "titulo11", "descrpt111", 12323, "barrio1", "rubro1")
