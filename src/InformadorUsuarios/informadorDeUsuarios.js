@@ -2,8 +2,6 @@ import axios from 'axios'
 
 const USR_URL = 'https://randomuser.me/api/'
 
-// Es la clase que tiene encapsulado el comportamiento que se quiere y lo exporto para que sea accesible
-
 export default class InformadorDeUsuarios {
     async getInfo(){
         try {
