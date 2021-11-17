@@ -52,7 +52,7 @@ routerPersonas.delete('/:idPersona', autenticar, async (req, res) => {
         const eliminado = await eliminarUsuario(daoUsuarios, idPersona)
         res.json(eliminado)
     } catch (error) {
-        res.json({ error: 'no se pudo modificar' })
+        res.json({ error: 'no se pudo eliminar' })
     }
 })
 
@@ -64,7 +64,7 @@ routerPersonas.get('/:idPersona', autenticar, async (req, res) => {
         const eliminado = await obtenerUsuario(daoUsuarios, idPersona)
         res.json(eliminado)
     } catch (error) {
-        res.json({ error: 'no se pudo modificar' })
+        res.json({ error: 'no se pudo obtener' })
     }
 })
 
